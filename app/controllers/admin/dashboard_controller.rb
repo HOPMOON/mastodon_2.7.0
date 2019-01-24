@@ -8,7 +8,7 @@ module Admin
       @registrations_week    = Redis.current.get("activity:accounts:local:#{current_week}") || 0
       @logins_week           = Redis.current.pfcount("activity:logins:#{current_week}")
       @interactions_week     = Redis.current.get("activity:interactions:#{current_week}") || 0
-      @relay_enabled         = Relay.enabled.exists?
+      @relay_enabled         = false
       @single_user_mode      = Rails.configuration.x.single_user_mode
       @registrations_enabled = Setting.open_registrations
       @deletions_enabled     = Setting.open_deletion

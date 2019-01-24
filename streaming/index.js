@@ -14,7 +14,7 @@ const fs = require('fs');
 const env = process.env.NODE_ENV || 'development';
 
 dotenv.config({
-  path: env === 'production' ? '.env.production' : '.env',
+  path: env === 'production' ? '/home/~USERNAME~/live/.env.production' : '.env',
 });
 
 log.level = process.env.LOG_LEVEL || 'verbose';
@@ -657,6 +657,7 @@ const attachServerWithConfig = (server, onSuccess) => {
 };
 
 const onPortAvailable = onSuccess => {
+/*
   const testServer = http.createServer();
 
   testServer.once('error', err => {
@@ -669,6 +670,13 @@ const onPortAvailable = onSuccess => {
   });
 
   attachServerWithConfig(testServer);
+*/
+  throng({
+    workers: numWorkers,
+    lifetime: Infinity,
+    start: startWorker,
+    master: startMaster
+  });
 };
 
 onPortAvailable(err => {

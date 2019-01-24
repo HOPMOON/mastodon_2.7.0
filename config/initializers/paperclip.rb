@@ -9,7 +9,8 @@ end
 
 Paperclip::Attachment.default_options.merge!(
   use_timestamp: false,
-  path: ':class/:attachment/:id_partition/:style/:filename',
+#  path: ':class/:attachment/:id_partition/:style/:filename',
+  path: ':class/~DOMAIN~/:attachment/:id_partition/:style/:filename',
   storage: :fog
 )
 
